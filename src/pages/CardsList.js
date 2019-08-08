@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import {Link} from 'react-router-dom'
+import magicService from '../services/magicService'
 
 class CardsList extends Component {
   
@@ -9,7 +10,9 @@ class CardsList extends Component {
   }
   
   componentDidMount() {
-    axios.get('https://api.magicthegathering.io/v1/cards')
+    // axios.get('https://api.magicthegathering.io/v1/cards')
+    // aqui ponemos el singleton en vez del axios, para refactorizar.
+    magicService.getAllCards()
       .then((response)=> {
         // console.log(response)
         const cardsFromAPI  = response.data.cards;

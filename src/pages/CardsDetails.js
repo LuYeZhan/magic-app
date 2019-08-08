@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import magicService from '../services/magicService'
 
 class CardsDetails extends Component {
 
@@ -9,7 +10,8 @@ class CardsDetails extends Component {
 
   componentDidMount(){
     const {id} = this.props.match.params;
-    axios.get(`https://api.magicthegathering.io/v1/cards/${id}`)
+    // axios.get(`https://api.magicthegathering.io/v1/cards/${id}`)
+    magicService.getOneCard(id)
     .then((response) =>{
       this.setState({
         card: response.data.card,
@@ -21,6 +23,7 @@ class CardsDetails extends Component {
   }
 
   goToPreviousPage = () => {
+    // history.goBack te va al historial y te devuelve a la pantalla anterior
     this.props.history.goBack();
   }
 
